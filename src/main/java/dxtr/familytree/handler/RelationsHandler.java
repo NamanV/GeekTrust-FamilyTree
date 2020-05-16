@@ -2,8 +2,8 @@ package dxtr.familytree.handler;
 
 import dxtr.familytree.interfaces.Member;
 import dxtr.familytree.utility.EnumUtility.GENDER;
-import dxtr.familytree.utility.Error;
-import dxtr.familytree.utility.RelationsException;
+import dxtr.familytree.errors.Error;
+import dxtr.familytree.errors.RelationsException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +33,7 @@ public class RelationsHandler {
     }
 
     public List<Member> getInLawsSiblings(Member ofMember, RelationType relationType, GENDER gender){
+
         return null;
     }
 }

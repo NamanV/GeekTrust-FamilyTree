@@ -1,4 +1,4 @@
-package dxtr.familytree.utility;
+package dxtr.familytree.errors;
 
 public enum Error {
     CHILD_ADDITION_FAILED("CHILD_ADDITION_FAILED"),

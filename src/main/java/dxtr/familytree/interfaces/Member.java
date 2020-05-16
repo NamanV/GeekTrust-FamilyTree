@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface Member {
 
+    public void addSpouse(Member spouse);
+
     public GENDER getGender();
 
     public String getName();
