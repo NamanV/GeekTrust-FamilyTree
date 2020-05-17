@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class RelationsHandler {
 
     public enum RelationType{
-        MATERNAL, PATERNAL, SISTER, BROTHER, SON, DAUGHTER;
+        MATERNAL, PATERNAL, SIBLING_IN_LAWS;
     }
     public static List<Member> getUnclesOrAunt(Member ofMember, RelationType realtionType, GENDER gender) throws RelationsException{
         Member parent;
@@ -33,7 +33,10 @@ public class RelationsHandler {
     }
 
     public List<Member> getInLawsSiblings(Member ofMember, RelationType relationType, GENDER gender){
-
         return null;
+    }
+
+    public List<Member> getChildren(Member ofMember, RelationType relationType, GENDER gender){
+        return ofMember.getChildren().stream().filter(child -> child.getGender().equals(gender)).collect(Collectors.toList());
     }
 }
