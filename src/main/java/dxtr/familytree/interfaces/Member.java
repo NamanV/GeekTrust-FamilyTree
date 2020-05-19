@@ -14,7 +14,11 @@ public interface Member {
 
     public Member getParent(GENDER gender);
 
+    public void setParent(GENDER gender, Member parent);
+
     public Member getSpouse();
 
     public List<Member> getChildren();
+
+    public void addChild(Member member);
 }

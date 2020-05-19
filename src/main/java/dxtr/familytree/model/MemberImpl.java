@@ -58,4 +58,35 @@ public class MemberImpl implements Member {
     public String getName() {
         return name;
     }
+
+    @Override
+    public void addChild(Member member) {
+        children.add(member);
+        getSpouse().getChildren().add(member);
+        if(getGender().equals(GENDER.MALE)){
+            member.setParent(GENDER.MALE,this);
+            member.setParent(GENDER.FEMALE,this.getSpouse());
+        }else{
+            member.setParent(GENDER.FEMALE,this);
+            member.setParent(GENDER.MALE,this.getSpouse());
+        }
+    }
+
+    @Override
+    public void setParent(GENDER gender, Member parent) {
+       switch (gender){
+           case MALE:
+               this.father = parent;
+               break;
+           case FEMALE:
+               this.mother = parent;
+               break;
+           default:
+       }
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

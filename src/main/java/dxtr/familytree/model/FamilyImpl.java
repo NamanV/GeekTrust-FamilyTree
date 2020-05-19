@@ -7,12 +7,17 @@ import dxtr.familytree.errors.FamiltyTreeException;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 
 public class FamilyImpl implements Family {
 
     // Both are at the same hierarchy, can be done with just one of the two....
     private Member king, queen;
+
+    public FamilyImpl(){
+
+    }
 
     public FamilyImpl(Member king, Member queen){
         this.king = king;
@@ -29,7 +34,7 @@ public class FamilyImpl implements Family {
                return member;
            }
 
-           if(member.getSpouse().getName().equalsIgnoreCase(name)){
+           if(Objects.nonNull(member.getSpouse()) && member.getSpouse().getName().equalsIgnoreCase(name)){
                return member.getSpouse();
            }
            members.addAll(member.getChildren());
@@ -39,8 +44,31 @@ public class FamilyImpl implements Family {
 
     @Override
     public List<Member> getRelatives(String name, String relation) throws FamiltyTreeException {
-            return Relations.valueOf(relation).getRelatives(findMember(name));
+        List<Member> relatives = Relations.valueOf(relation).getRelatives(findMember(name));
+        if(Objects.isNull(relatives) || relatives.isEmpty()){
+            throw new FamiltyTreeException(Error.RELATION_NOT_FOUND);
+        }
+        return relatives;
     }
 
+    @Override
+    public Member addMember(Member newMember, Relations relation, Member toMember) throws FamiltyTreeException {
+        return relation.addMember(newMember,toMember);
+    }
+
+    @Override
+    public void addKing(Member member) {
+        this.king = member;
+    }
+
+    @Override
+    public void addQueen(Member member) {
+        this.queen = member;
+    }
+
+    @Override
+    public void printFamilyTree() {
+
+    }
 }
 
