@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class FamilyTester {
 
     public static void main(String[] args) {
+
         try {
             List<String> instructions = processInputFileToInstructions(Constants.INIT_FILE_NAME);
             FamilyTree familyTree = new FamilyTree();
@@ -34,6 +35,18 @@ public class FamilyTester {
             e.printStackTrace();
         }
 
+    }
+
+    private static void runThroughIDE(){
+        try {
+            List<String> instructions = processInputFileToInstructions(Constants.INIT_FILE_NAME);
+            FamilyTree familyTree = new FamilyTree();
+            familyTree.initFamilyTree(instructions);
+            instructions = processInputFileToInstructions("/testcase-1.txt");
+            instructions.forEach((instruction) -> familyTree.processInput(instruction,false));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static List<String> processInputFileToInstructions(String fileName) throws IOException {

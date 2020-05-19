@@ -5,3 +5,5 @@ ADD_CHILD Satya Yaya Female
 GET_RELATIONSHIP Satvy Sister-In-Law
 GET_RELATIONSHIP Atya Sister-In-Law
 GET_RELATIONSHIP Vasa Siblings
+ADD_CHILD Asva Vani Female
+GET_RELATIONSHIP Vasa Siblings

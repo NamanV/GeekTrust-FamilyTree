@@ -1,5 +1,6 @@
 package dxtr.familytree.interfaces;
 
+import dxtr.familytree.errors.MembersException;
 import dxtr.familytree.utility.EnumUtility.GENDER;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface Member {
 
     public List<Member> getChildren();
 
-    public void addChild(Member member);
+    public void addChild(Member member) throws MembersException;
 }

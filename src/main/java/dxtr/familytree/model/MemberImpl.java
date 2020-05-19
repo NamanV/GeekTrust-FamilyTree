@@ -1,5 +1,8 @@
 package dxtr.familytree.model;
 
+import dxtr.familytree.errors.Error;
+import dxtr.familytree.errors.FamilyTreeException;
+import dxtr.familytree.errors.MembersException;
 import dxtr.familytree.interfaces.Member;
 import dxtr.familytree.utility.EnumUtility.GENDER;
 
@@ -60,16 +63,15 @@ public class MemberImpl implements Member {
     }
 
     @Override
-    public void addChild(Member member) {
+    public void addChild(Member member) throws MembersException {
+        if(!getGender().equals(GENDER.FEMALE)){
+            throw new MembersException(Error.CHILD_ADDITION_FAILED);
+        }
+
         children.add(member);
         getSpouse().getChildren().add(member);
-        if(getGender().equals(GENDER.MALE)){
-            member.setParent(GENDER.MALE,this);
-            member.setParent(GENDER.FEMALE,this.getSpouse());
-        }else{
-            member.setParent(GENDER.FEMALE,this);
-            member.setParent(GENDER.MALE,this.getSpouse());
-        }
+        member.setParent(GENDER.FEMALE,this);
+        member.setParent(GENDER.MALE,this.getSpouse());
     }
 
     @Override
