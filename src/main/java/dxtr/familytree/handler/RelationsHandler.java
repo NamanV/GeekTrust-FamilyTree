@@ -1,10 +1,9 @@
 package dxtr.familytree.handler;
 
-import dxtr.familytree.interfaces.Member;
-import dxtr.familytree.utility.EnumUtility.GENDER;
 import dxtr.familytree.errors.Error;
 import dxtr.familytree.errors.RelationsException;
-import sun.jvm.hotspot.oops.ObjectHeap;
+import dxtr.familytree.interfaces.Member;
+import dxtr.familytree.utility.EnumUtility.GENDER;
 
 import java.util.ArrayList;
 import java.util.List;

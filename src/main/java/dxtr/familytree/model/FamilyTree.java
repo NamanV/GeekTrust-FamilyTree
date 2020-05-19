@@ -65,7 +65,8 @@ public class FamilyTree {
                     if(subInstruction.length < 3){
                         throw new FamilyTreeException(Error.INVALID_ARGUMENTS);
                     }
-                    family.getRelatives(subInstruction[1], subInstruction[2]).forEach(member -> System.out.print(member + " "));
+                    String relations = subInstruction[2].replace("-","_");
+                    family.getRelatives(subInstruction[1], relations).forEach(member -> System.out.print(member + " "));
                     System.out.println("");
                 } catch (FamilyTreeException e) {
                     System.out.println(e.getMessage());
