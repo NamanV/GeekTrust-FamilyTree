@@ -7,6 +7,8 @@ import dxtr.familytree.interfaces.Member;
 import dxtr.familytree.utility.EnumUtility;
 import dxtr.familytree.utility.EnumUtility.COMMANDS;
 import dxtr.familytree.utility.EnumUtility.GENDER;
+import dxtr.familytree.utility.Logger;
+import sun.rmi.runtime.Log;
 
 import java.util.List;
 
@@ -20,12 +22,11 @@ public class FamilyTree {
 
     public void initFamilyTree(List<String> instructions) {
         for (String instruction : instructions) {
-            processInput(instruction);
+            processInput(instruction,true);
         }
     }
 
-
-    public void processInput(String instruction) {
+    public void processInput(String instruction, boolean initFile) {
         String[] subInstruction = instruction.split(" ");
 
         COMMANDS command = EnumUtility.load(subInstruction[0], COMMANDS.class, COMMANDS.NOT_FOUND);
@@ -39,9 +40,11 @@ public class FamilyTree {
                     Member parent = family.findMember(subInstruction[1]);
                     Member member = new MemberImpl(subInstruction[2], EnumUtility.GENDER.valueOf(subInstruction[3].toUpperCase()), null, null);
                     parent.addChild(member);
-                    System.out.println(Error.CHILD_ADDITION_SUCCEEDED.getErrorMessage());
+                    if(!initFile){
+                        Logger.printLog(Error.CHILD_ADDITION_SUCCEEDED.getErrorMessage());
+                    }
                 } catch (FamilyTreeException e) {
-                    System.out.println(e.getMessage());
+                    Logger.printLog(e.getMessage());
                 }
                 break;
             case ADD_KING:
@@ -57,7 +60,7 @@ public class FamilyTree {
                     member.addSpouse(newMember);
                     newMember.addSpouse(member);
                 } catch (FamilyTreeException e) {
-                    System.out.println(e.getMessage());
+                    Logger.printLog(e.getMessage());
                 }
                 break;
             case GET_RELATIONSHIP:
@@ -66,15 +69,15 @@ public class FamilyTree {
                         throw new FamilyTreeException(Error.INVALID_ARGUMENTS);
                     }
                     String relations = subInstruction[2].replace("-","_");
-                    family.getRelatives(subInstruction[1], relations).forEach(member -> System.out.print(member + " "));
-                    System.out.println("");
+                    family.getRelatives(subInstruction[1], relations).forEach(member -> Logger.printLogSameLine(member + " "));
+                    Logger.printLog("");
                 } catch (FamilyTreeException e) {
-                    System.out.println(e.getMessage());
+                    Logger.printLog(e.getMessage());
                 }
                 break;
             case NOT_FOUND:
             default:
-                System.out.printf("Invalid instruction %s, please use valid instructions.\n",subInstruction[0]);
+                Logger.printLog("Invalid instruction" + subInstruction[0] +", please use valid instructions.\n");
         }
     }
 }

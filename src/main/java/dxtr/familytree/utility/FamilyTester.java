@@ -29,7 +29,7 @@ public class FamilyTester {
             inputFilePath = args[0];
 
             instructions = processInputFile(inputFilePath);
-            instructions.forEach((instruction) -> familyTree.processInput(instruction));
+            instructions.forEach((instruction) -> familyTree.processInput(instruction,false));
         } catch (IOException | FamilyTreeException |URISyntaxException e) {
             e.printStackTrace();
         }
@@ -37,7 +37,6 @@ public class FamilyTester {
     }
 
     private static List<String> processInputFileToInstructions(String fileName) throws IOException {
-        System.out.println(fileName);
         List<String> instructions = null;
         try (InputStream inputStream = FamilyTester.class.getClass().getResourceAsStream(fileName);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
