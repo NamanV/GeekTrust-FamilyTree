@@ -25,6 +25,7 @@ public class FamilyTester {
             if(args.length <= 0){
                 throw new FamilyTreeException(Error.INVALID_ARGUMENTS);
             }
+
             inputFilePath = args[0];
 
             instructions = processInputFile(inputFilePath);
