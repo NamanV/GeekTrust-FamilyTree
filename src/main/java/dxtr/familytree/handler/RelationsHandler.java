@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class RelationsHandler {
 
     public enum RelationType {
-        MATERNAL, PATERNAL, SIBLING_IN_LAWS;
+        MATERNAL, PATERNAL, SIBLING_IN_LAWS, CHILD, SIBLINGS;
     }
 
     public static List<Member> getUnclesOrAunt(final Member ofMember, RelationType relationType, final GENDER gender) throws RelationsException {
@@ -51,7 +51,7 @@ public class RelationsHandler {
         return siblingsInLaws;
     }
 
-    public List<Member> getChildren(Member ofMember, RelationType relationType, GENDER gender) {
+    public static List<Member> getChildren(Member ofMember, RelationType relationType, GENDER gender) {
         return ofMember.getChildren().stream().filter(child -> child.getGender().equals(gender)).collect(Collectors.toList());
     }
 }

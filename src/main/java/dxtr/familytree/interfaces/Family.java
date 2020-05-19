@@ -9,7 +9,6 @@ public interface Family {
 
     public Member findMember(String name) throws FamiltyTreeException;
     public List<Member> getRelatives(String name, String relation) throws FamiltyTreeException;
-    public Member addMember(Member newMember, Relations relation, Member toMember) throws FamiltyTreeException;
     public void addKing(Member member);
     public void addQueen(Member member);
 

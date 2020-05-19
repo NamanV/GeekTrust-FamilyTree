@@ -1,24 +1,15 @@
 package dxtr.familytree.utility;
 
-import dxtr.familytree.errors.FamiltyTreeException;
-import dxtr.familytree.interfaces.Family;
-import dxtr.familytree.interfaces.Member;
-import dxtr.familytree.model.FamilyImpl;
 import dxtr.familytree.model.FamilyTree;
-import dxtr.familytree.model.MemberImpl;
-import sun.misc.ClassLoaderUtil;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class FamilyTester {
 

@@ -52,11 +52,6 @@ public class FamilyImpl implements Family {
     }
 
     @Override
-    public Member addMember(Member newMember, Relations relation, Member toMember) throws FamiltyTreeException {
-        return relation.addMember(newMember,toMember);
-    }
-
-    @Override
     public void addKing(Member member) {
         this.king = member;
     }

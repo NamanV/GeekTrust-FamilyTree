@@ -67,7 +67,7 @@ public class FamilyTree {
                 break;
             case NOT_FOUND:
             default:
-                System.out.printf("Invalid instruction %s, please use valid instructions.",subInstruction[0]);
+                System.out.printf("Invalid instruction %s, please use valid instructions.\n",subInstruction[0]);
         }
     }
 }
