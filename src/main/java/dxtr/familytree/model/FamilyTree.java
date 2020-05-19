@@ -1,7 +1,7 @@
 package dxtr.familytree.model;
 
 import dxtr.familytree.errors.Error;
-import dxtr.familytree.errors.FamiltyTreeException;
+import dxtr.familytree.errors.FamilyTreeException;
 import dxtr.familytree.interfaces.Family;
 import dxtr.familytree.interfaces.Member;
 import dxtr.familytree.utility.EnumUtility;
@@ -34,13 +34,13 @@ public class FamilyTree {
                 try {
                     GENDER gender = EnumUtility.loadUpperCase(subInstruction[3],GENDER.class,GENDER.NONE);
                     if(gender.equals(GENDER.NONE)){
-                        throw new FamiltyTreeException(Error.INVALID_GENDER);
+                        throw new FamilyTreeException(Error.INVALID_GENDER);
                     }
                     Member parent = family.findMember(subInstruction[1]);
                     Member member = new MemberImpl(subInstruction[2], EnumUtility.GENDER.valueOf(subInstruction[3].toUpperCase()), null, null);
                     parent.addChild(member);
                     System.out.println(Error.CHILD_ADDITION_SUCCEEDED.getErrorMessage());
-                } catch (FamiltyTreeException e) {
+                } catch (FamilyTreeException e) {
                     System.out.println(e.getMessage());
                 }
                 break;
@@ -56,18 +56,18 @@ public class FamilyTree {
                     Member newMember = new MemberImpl(subInstruction[2], EnumUtility.GENDER.valueOf(subInstruction[3].toUpperCase()), null, null);
                     member.addSpouse(newMember);
                     newMember.addSpouse(member);
-                } catch (FamiltyTreeException e) {
+                } catch (FamilyTreeException e) {
                     System.out.println(e.getMessage());
                 }
                 break;
             case GET_RELATIONSHIP:
                 try {
                     if(subInstruction.length < 3){
-                        throw new FamiltyTreeException(Error.INVALID_ARGUMENTS);
+                        throw new FamilyTreeException(Error.INVALID_ARGUMENTS);
                     }
                     family.getRelatives(subInstruction[1], subInstruction[2]).forEach(member -> System.out.print(member + " "));
                     System.out.println("");
-                } catch (FamiltyTreeException e) {
+                } catch (FamilyTreeException e) {
                     System.out.println(e.getMessage());
                 }
                 break;

@@ -3,7 +3,7 @@ package dxtr.familytree.model;
 import dxtr.familytree.errors.Error;
 import dxtr.familytree.interfaces.Family;
 import dxtr.familytree.interfaces.Member;
-import dxtr.familytree.errors.FamiltyTreeException;
+import dxtr.familytree.errors.FamilyTreeException;
 import dxtr.familytree.utility.EnumUtility;
 
 import java.util.LinkedList;
@@ -26,9 +26,9 @@ public class FamilyImpl implements Family {
     }
 
     @Override
-    public Member findMember(String name) throws FamiltyTreeException {
+    public Member findMember(String name) throws FamilyTreeException {
         if(Objects.isNull(king)){
-            throw  new FamiltyTreeException(Error.INVALID_FAMILY_TREE);
+            throw  new FamilyTreeException(Error.INVALID_FAMILY_TREE);
         }
         Queue<Member> members = new LinkedList<>();
         members.add(king);
@@ -43,14 +43,14 @@ public class FamilyImpl implements Family {
            }
            members.addAll(member.getChildren());
         }
-        throw new FamiltyTreeException(Error.PERSON_NOT_FOUND);
+        throw new FamilyTreeException(Error.PERSON_NOT_FOUND);
     }
 
     @Override
-    public List<Member> getRelatives(String name, String relation) throws FamiltyTreeException {
+    public List<Member> getRelatives(String name, String relation) throws FamilyTreeException {
         List<Member> relatives = EnumUtility.loadUpperCase(relation,Relations.class,Relations.NONE).getRelatives(findMember(name));
         if(Objects.isNull(relatives) || relatives.isEmpty()){
-            throw new FamiltyTreeException(Error.RELATION_NOT_FOUND);
+            throw new FamilyTreeException(Error.RELATION_NOT_FOUND);
         }
         return relatives;
     }

@@ -37,7 +37,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <!-- This is main class of your program which will be executed-->
-                            <mainClass>{{dxtr.familytree.utility.FamilyTester}}</mainClass>
+                            <mainClass>dxtr.familytree.utility.FamilyTester</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

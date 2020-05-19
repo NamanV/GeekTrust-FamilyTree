@@ -1,10 +1,10 @@
 package dxtr.familytree.errors;
 
-public class FamiltyTreeException extends Exception {
+public class FamilyTreeException extends Exception {
 
     private Error error;
 
-    public FamiltyTreeException(Error error){
+    public FamilyTreeException(Error error){
         this.error = error;
     }
 

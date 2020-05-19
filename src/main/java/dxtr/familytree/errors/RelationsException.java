@@ -1,6 +1,6 @@
 package dxtr.familytree.errors;
 
-public class RelationsException extends FamiltyTreeException {
+public class RelationsException extends FamilyTreeException {
 
     public RelationsException(Error error){
         super(error);

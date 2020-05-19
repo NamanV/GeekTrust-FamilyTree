@@ -1,7 +1,5 @@
 package dxtr.familytree.utility;
 
-import dxtr.familytree.errors.FamiltyTreeException;
-
 import java.util.Objects;
 
 public class EnumUtility {
