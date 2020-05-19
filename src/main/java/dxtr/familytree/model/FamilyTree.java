@@ -26,13 +26,16 @@ public class FamilyTree {
 
 
     public void processInput(String instruction) {
-        System.out.println("Instruction : " + instruction);
         String[] subInstruction = instruction.split(" ");
 
         COMMANDS command = EnumUtility.load(subInstruction[0], COMMANDS.class, COMMANDS.NOT_FOUND);
         switch (command) {
             case ADD_CHILD:
                 try {
+                    GENDER gender = EnumUtility.loadUpperCase(subInstruction[3],GENDER.class,GENDER.NONE);
+                    if(gender.equals(GENDER.NONE)){
+                        throw new FamiltyTreeException(Error.INVALID_GENDER);
+                    }
                     Member parent = family.findMember(subInstruction[1]);
                     Member member = new MemberImpl(subInstruction[2], EnumUtility.GENDER.valueOf(subInstruction[3].toUpperCase()), null, null);
                     parent.addChild(member);
@@ -59,6 +62,9 @@ public class FamilyTree {
                 break;
             case GET_RELATIONSHIP:
                 try {
+                    if(subInstruction.length < 3){
+                        throw new FamiltyTreeException(Error.INVALID_ARGUMENTS);
+                    }
                     family.getRelatives(subInstruction[1], subInstruction[2]).forEach(member -> System.out.print(member + " "));
                     System.out.println("");
                 } catch (FamiltyTreeException e) {

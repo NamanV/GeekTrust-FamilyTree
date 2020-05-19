@@ -4,6 +4,7 @@ import dxtr.familytree.errors.Error;
 import dxtr.familytree.interfaces.Family;
 import dxtr.familytree.interfaces.Member;
 import dxtr.familytree.errors.FamiltyTreeException;
+import dxtr.familytree.utility.EnumUtility;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,9 @@ public class FamilyImpl implements Family {
 
     @Override
     public Member findMember(String name) throws FamiltyTreeException {
+        if(Objects.isNull(king)){
+            throw  new FamiltyTreeException(Error.INVALID_FAMILY_TREE);
+        }
         Queue<Member> members = new LinkedList<>();
         members.add(king);
         while(!members.isEmpty()){
@@ -44,7 +48,7 @@ public class FamilyImpl implements Family {
 
     @Override
     public List<Member> getRelatives(String name, String relation) throws FamiltyTreeException {
-        List<Member> relatives = Relations.valueOf(relation).getRelatives(findMember(name));
+        List<Member> relatives = EnumUtility.loadUpperCase(relation,Relations.class,Relations.NONE).getRelatives(findMember(name));
         if(Objects.isNull(relatives) || relatives.isEmpty()){
             throw new FamiltyTreeException(Error.RELATION_NOT_FOUND);
         }

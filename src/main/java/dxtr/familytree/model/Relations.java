@@ -1,5 +1,7 @@
 package dxtr.familytree.model;
 
+import dxtr.familytree.errors.Error;
+import dxtr.familytree.errors.FamiltyTreeException;
 import dxtr.familytree.errors.RelationsException;
 import dxtr.familytree.handler.RelationsHandler;
 import dxtr.familytree.interfaces.Member;
@@ -41,7 +43,7 @@ public enum Relations {
     }, BROTHER_IN_LAW {
         @Override
         public List<Member> getRelatives(Member ofMember) {
-            return null;
+            return RelationsHandler.getInLawsSiblings(ofMember, RelationsHandler.RelationType.SIBLING_IN_LAWS, GENDER.MALE);
         }
 
     }, SON {
@@ -60,6 +62,12 @@ public enum Relations {
         @Override
         public List<Member> getRelatives(Member ofMember) {
             return null;
+        }
+    },
+    NONE{
+        @Override
+        public List<Member> getRelatives(Member ofMember) throws RelationsException {
+            throw new RelationsException(Error.PERSON_NOT_FOUND);
         }
     };
 

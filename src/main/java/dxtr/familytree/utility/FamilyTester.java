@@ -19,13 +19,12 @@ public class FamilyTester {
             FamilyTree familyTree = new FamilyTree();
             familyTree.initFamilyTree(instructions);
 
+            //System.out.println("Arg 0 :" + args[0]);
             instructions = processInputFile("input-test-case-1.txt");
             instructions.forEach((instruction) -> familyTree.processInput(instruction));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
-
-
 
     }
 
