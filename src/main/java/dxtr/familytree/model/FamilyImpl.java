@@ -13,16 +13,11 @@ import java.util.Queue;
 
 public class FamilyImpl implements Family {
 
-    // Both are at the same hierarchy, can be done with just one of the two....
+    // Both are at the same hierarchy, can be done with just one of the two. I have used king as the head node.
     private Member king, queen;
 
     public FamilyImpl(){
 
-    }
-
-    public FamilyImpl(Member king, Member queen){
-        this.king = king;
-        this.queen = queen;
     }
 
     @Override
@@ -67,7 +62,7 @@ public class FamilyImpl implements Family {
 
     @Override
     public void printFamilyTree() {
-
+        // Add printing logic here..
     }
 }
 

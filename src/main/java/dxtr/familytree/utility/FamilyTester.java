@@ -18,7 +18,7 @@ public class FamilyTester {
 
     public static void main(String[] args) {
         try {
-            List<String> instructions = processInputFileToInstructions("/initial-data.txt");
+            List<String> instructions = processInputFileToInstructions(Constants.INIT_FILE_NAME);
             FamilyTree familyTree = new FamilyTree();
             familyTree.initFamilyTree(instructions);
             String inputFilePath;
