@@ -8,7 +8,6 @@ import dxtr.familytree.utility.EnumUtility;
 import dxtr.familytree.utility.EnumUtility.COMMANDS;
 import dxtr.familytree.utility.EnumUtility.GENDER;
 import dxtr.familytree.utility.Logger;
-import sun.rmi.runtime.Log;
 
 import java.util.List;
 
