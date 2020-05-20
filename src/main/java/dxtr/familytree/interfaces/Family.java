@@ -10,7 +10,8 @@ public interface Family {
     public List<Member> getRelatives(String name, String relation) throws FamilyTreeException;
     public void addKing(Member member);
     public void addQueen(Member member);
-
+    public void addChildToFamilyMember(Member child, Member toMember) throws FamilyTreeException;
+    public void addSpouseToFamilyMember(Member spouse, Member toMember) throws FamilyTreeException;
     public void printFamilyTree();
 
 }

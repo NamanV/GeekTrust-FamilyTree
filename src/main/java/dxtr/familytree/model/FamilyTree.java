@@ -33,12 +33,9 @@ public class FamilyTree {
             case ADD_CHILD:
                 try {
                     GENDER gender = EnumUtility.loadUpperCase(subInstruction[3],GENDER.class,GENDER.NONE);
-                    if(gender.equals(GENDER.NONE)){
-                        throw new FamilyTreeException(Error.INVALID_GENDER);
-                    }
                     Member parent = family.findMember(subInstruction[1]);
-                    Member member = new MemberImpl(subInstruction[2], EnumUtility.GENDER.valueOf(subInstruction[3].toUpperCase()), null, null);
-                    parent.addChild(member);
+                    Member member = new MemberImpl(subInstruction[2], gender, null, null);
+                    family.addChildToFamilyMember(member,parent);
                     if(!initFile){
                         Logger.printLog(Error.CHILD_ADDITION_SUCCEEDED.getErrorMessage());
                     }
@@ -56,8 +53,7 @@ public class FamilyTree {
                 try {
                     Member member = family.findMember(subInstruction[1]);
                     Member newMember = new MemberImpl(subInstruction[2], EnumUtility.GENDER.valueOf(subInstruction[3].toUpperCase()), null, null);
-                    member.addSpouse(newMember);
-                    newMember.addSpouse(member);
+                    family.addSpouseToFamilyMember(newMember,member);
                 } catch (FamilyTreeException e) {
                     Logger.printLog(e.getMessage());
                 }
@@ -67,6 +63,7 @@ public class FamilyTree {
                     if(subInstruction.length < 3){
                         throw new FamilyTreeException(Error.INVALID_ARGUMENTS);
                     }
+
                     String relations = subInstruction[2].replace("-","_");
                     family.getRelatives(subInstruction[1], relations).forEach(member -> Logger.printLogSameLine(member + " "));
                     Logger.printLog("");
